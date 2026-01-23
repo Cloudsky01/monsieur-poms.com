@@ -170,6 +170,15 @@
             margin-bottom: 10px;
         }
 
+        .music-player audio {
+            filter: sepia(20%) saturate(70%) grayscale(1) contrast(99%) invert(12%);
+            height: 30px;
+        }
+
+        .music-player audio::-webkit-media-controls-panel {
+            background-color: #D3D3D3;
+        }
+
         .visitor-counter {
             background: #000;
             color: red;
@@ -267,8 +276,12 @@
 
             <div class="music-player">
                 🎵 Now Playing: <br>
-                <em>009 Sound System</em><br>
-                [||||||||||]
+                <em>Monsieur Poms - Banger</em><br>
+                <audio controls loop style="width: 100%; margin-top: 5px;">
+                    <source src="{{ .Site.BaseURL }}music/banger.mp3" type="audio/mpeg">
+                    <source src="{{ .Site.BaseURL }}music/banger.ogg" type="audio/ogg">
+                    Your browser does not support the audio element.
+                </audio>
             </div>
         </div>
 
