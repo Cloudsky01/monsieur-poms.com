@@ -1,4 +1,4 @@
-baseURL = '/'
+baseURL = 'https://cloudsky01.github.io/monsieur-poms.com/'
 languageCode = 'en-us'
 title = '~*~ MONSIEUR POMS ~*~ The Official Fan Site'
 disableKinds = ['taxonomy', 'term']

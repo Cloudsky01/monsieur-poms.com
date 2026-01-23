@@ -211,9 +211,9 @@
 <div class="container">
     <div class="header">
         <h1>
-            <img src="/images/poms_drink.jpg" class="spinning-drink" alt="Poms Soda">
+            <img src="{{ .Site.BaseURL }}images/poms_drink.jpg" class="spinning-drink" alt="Poms Soda">
             🐱 MONSIEUR POMS 🐱
-            <img src="/images/poms_drink.jpg" class="spinning-drink" alt="Poms Soda">
+            <img src="{{ .Site.BaseURL }}images/poms_drink.jpg" class="spinning-drink" alt="Poms Soda">
         </h1>
         <div style="font-size: 18px; margin-top: 10px;">~*~ The Internet's #1 Cat ~*~</div>
     </div>
@@ -226,11 +226,11 @@
 
     <table class="nav-table">
         <tr>
-            <td><a href="/" class="nav-link">Home</a></td>
-            <td><a href="/about/" class="nav-link">About Me</a></td>
-            <td><a href="/gallery/" class="nav-link">Pics!!</a></td>
-            <td><a href="/facts/" class="nav-link">Fun Facts</a></td>
-            <td><a href="/guestbook/" class="nav-link">Sign Guestbook</a></td>
+            <td><a href="{{ .Site.BaseURL }}" class="nav-link">Home</a></td>
+            <td><a href="{{ .Site.BaseURL }}about/" class="nav-link">About Me</a></td>
+            <td><a href="{{ .Site.BaseURL }}gallery/" class="nav-link">Pics!!</a></td>
+            <td><a href="{{ .Site.BaseURL }}facts/" class="nav-link">Fun Facts</a></td>
+            <td><a href="{{ .Site.BaseURL }}guestbook/" class="nav-link">Sign Guestbook</a></td>
         </tr>
     </table>
 
@@ -238,7 +238,7 @@
         <div class="sidebar">
             <div class="sidebar-box">
                 <div class="sidebar-title">Profile</div>
-                <img src="/images/poms_avatar.jpg" alt="Me!" style="width: 100%; border: 1px solid #000; background: #eee; min-height: 100px;">
+                <img src="{{ .Site.BaseURL }}images/poms_avatar.jpg" alt="Me!" style="width: 100%; border: 1px solid #000; background: #eee; min-height: 100px;">
                 <p><strong>Name:</strong> Monsieur Poms</p>
                 <p><strong>Nicknames:</strong> Bine, Binou, Monsieur Chonk</p>
                 <p><strong>Age:</strong> Almost 3!!!</p>
