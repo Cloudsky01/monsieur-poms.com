@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>~*~ MONSIEUR POMS ~*~ The Official Fan Site</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #FFC0CB;
+            background-image:
+                linear-gradient(90deg, transparent 50%, rgba(255,255,255,.5) 50%),
+                linear-gradient(0deg, transparent 50%, rgba(255,255,255,.5) 50%);
+            background-size: 50px 50px;
+            font-family: 'Verdana', 'Arial', sans-serif;
+            font-size: 14px;
+            color: #000080;
+            cursor: url('https://upload.wikimedia.org/wikipedia/commons/8/83/Mouse_cursor_hand_pointer.svg'), auto;
+        }
+
+        a {
+            color: #0000FF;
+            text-decoration: underline;
+        }
+        a:visited {
+            color: #800080;
+        }
+        a:hover {
+            background-color: #0000FF;
+            color: #FFFFFF;
+            text-decoration: none;
+            cursor: help;
+        }
+
+        .container {
+            width: 800px;
+            margin: 20px auto;
+            background-color: #FFFFFF;
+            border: 5px solid #000080;
+            box-shadow: 10px 10px 0px #888888;
+        }
+
+        .header {
+            background-color: #000080;
+            color: #FFFF00;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 5px solid #FF00FF;
+        }
+
+        .header h1 {
+            font-family: 'Impact', 'Arial Black', sans-serif;
+            font-size: 48px;
+            margin: 0;
+            text-shadow: 3px 3px 0px #FF0000;
+            letter-spacing: 5px;
+        }
+
+        .marquee-container {
+            background-color: #000000;
+            color: #00FF00;
+            font-family: 'Courier New', monospace;
+            padding: 5px;
+            border-bottom: 2px solid #888888;
+            font-weight: bold;
+        }
+
+        .nav-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #E0E0E0;
+            border-bottom: 3px solid #000080;
+        }
+
+        .nav-table td {
+            text-align: center;
+            border: 1px solid #FFFFFF;
+            padding: 10px;
+        }
+
+        .nav-link {
+            display: block;
+            text-decoration: none;
+            color: #000000;
+            font-weight: bold;
+            font-size: 16px;
+            background: linear-gradient(to bottom, #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%);
+            padding: 5px;
+            border: 1px solid #999;
+            border-radius: 5px;
+        }
+
+        .nav-link:hover {
+            background: linear-gradient(to bottom, #ffeb00 0%,#ffd700 100%);
+            color: #000;
+        }
+
+        .content-wrapper {
+            display: flex;
+        }
+
+        .sidebar {
+            width: 200px;
+            background-color: #E6E6FA;
+            padding: 10px;
+            border-right: 2px dashed #000080;
+            text-align: center;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==');
+        }
+
+        .sidebar-box {
+            border: 2px solid #FF00FF;
+            background-color: #FFF;
+            margin-bottom: 15px;
+            padding: 5px;
+        }
+
+        .sidebar-title {
+            background-color: #FF00FF;
+            color: #FFF;
+            font-weight: bold;
+            padding: 3px;
+            margin: -5px -5px 5px -5px;
+        }
+
+        .footer {
+            background-color: #000080;
+            color: #FFFFFF;
+            text-align: center;
+            padding: 15px;
+            font-size: 11px;
+            border-top: 5px solid #FF00FF;
+        }
+
+        .blink {
+            animation: blinker 1s linear infinite;
+        }
+
+        @keyframes blinker {
+            50% { opacity: 0; }
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+            margin: 20px 0;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Trebuchet MS', 'Arial', sans-serif;
+            color: #FF00FF;
+            text-decoration: underline;
+        }
+
+        .music-player {
+            border: 2px inset #FFF;
+            background: #CCC;
+            padding: 5px;
+            font-size: 10px;
+            margin-bottom: 10px;
+        }
+
+        .visitor-counter {
+            background: #000;
+            color: red;
+            font-family: 'Courier New', monospace;
+            padding: 2px 5px;
+            border: 2px inset #999;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .badge {
+            display: inline-block;
+            border: 1px solid #fff;
+            margin: 2px;
+            background: #333;
+            color: #fff;
+            font-size: 9px;
+            padding: 2px;
+            width: 80px;
+            text-align: center;
+        }
+
+        .spinning-drink {
+            display: inline-block;
+            vertical-align: middle;
+            width: 60px;
+            animation: spin 5s linear infinite;
+            margin: 0 10px;
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>
+            <img src="/images/poms_drink.jpg" class="spinning-drink" alt="Poms Soda">
+            🐱 MONSIEUR POMS 🐱
+            <img src="/images/poms_drink.jpg" class="spinning-drink" alt="Poms Soda">
+        </h1>
+        <div style="font-size: 18px; margin-top: 10px;">~*~ The Internet's #1 Cat ~*~</div>
+    </div>
+
+    <div class="marquee-container">
+        <marquee scrollamount="5" scrolldelay="100">
+            +++ WELCOME TO THE OFFICIAL SITE +++ LATEST NEWS: Poms ate a bug today!! +++ SIGN THE GUESTBOOK PLS +++
+        </marquee>
+    </div>
+
+    <table class="nav-table">
+        <tr>
+            <td><a href="/" class="nav-link">Home</a></td>
+            <td><a href="/about/" class="nav-link">About Me</a></td>
+            <td><a href="/gallery/" class="nav-link">Pics!!</a></td>
+            <td><a href="/facts/" class="nav-link">Fun Facts</a></td>
+            <td><a href="/guestbook/" class="nav-link">Sign Guestbook</a></td>
+        </tr>
+    </table>
+
+    <div class="content-wrapper">
+        <div class="sidebar">
+            <div class="sidebar-box">
+                <div class="sidebar-title">Profile</div>
+                <img src="/images/poms_avatar.jpg" alt="Me!" style="width: 100%; border: 1px solid #000; background: #eee; min-height: 100px;">
+                <p><strong>Name:</strong> Monsieur Poms</p>
+                <p><strong>Nicknames:</strong> Bine, Binou, Monsieur Chonk</p>
+                <p><strong>Age:</strong> Almost 3!!!</p>
+                <p><strong>Mood:</strong> Chatty</p>
+                <p><strong>Song:</strong> Nyan Cat</p>
+            </div>
+
+            <div class="sidebar-box">
+                <div class="sidebar-title">My Friends</div>
+                <ul style="padding-left: 20px; text-align: left; font-size: 11px;">
+                    <li><a href="#">Tom (Myspace)</a></li>
+                    <li><a href="#">Grumpy Cat</a></li>
+                    <li><a href="#">LimeWire</a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-box">
+                <div class="sidebar-title">Shoutbox</div>
+                <marquee direction="up" height="100" scrollamount="2" style="text-align: left; font-size: 10px;">
+                    <strong>user1:</strong> cool site!<br><br>
+                    <strong>cool_guy:</strong> first!!<br><br>
+                    <strong>cat_luvr:</strong> omg so cute<br><br>
+                    <strong>admin:</strong> no spam pls
+                </marquee>
+            </div>
+
+            <div class="music-player">
+                🎵 Now Playing: <br>
+                <em>009 Sound System</em><br>
+                [||||||||||]
+            </div>
+        </div>
+
+        <div class="main-content">
+            {{ block "main" . }}{{ end }}
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>
+            (c) Copyright 2010-2026 Monsieur Poms Productions.<br>
+            Don't steal my layout!!! >:(
+        </p>
+        <br>
+        <div class="badge">Valid HTML</div>
+        <div class="badge">IE 6.0</div>
+        <div class="badge">Notepad</div>
+        <br><br>
+        You are visitor number: <div class="visitor-counter">048291</div>
+    </div>
+</div>
+
+</body>
+</html>

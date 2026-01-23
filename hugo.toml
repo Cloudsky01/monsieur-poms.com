@@ -1,0 +1,7 @@
+baseURL = '/'
+languageCode = 'en-us'
+title = '~*~ MONSIEUR POMS ~*~ The Official Fan Site'
+disableKinds = ['taxonomy', 'term']
+
+[markup.goldmark.renderer]
+unsafe = true
