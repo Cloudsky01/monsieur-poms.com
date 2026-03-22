@@ -18,9 +18,38 @@ title: "Home"
 
 <div style="text-align: center; border: 3px dashed #FF00FF; padding: 10px; background: #FFF0F5; margin: 10px;">
 <h3>PICTURE OF THE DAY</h3>
-<img src="https://cloudsky01.github.io/monsieur-poms.com/images/poms_sleeping.jpg" alt="Poms sleeping" style="width: 100%; max-width: 400px; border: 2px solid #000;">
-<p><em>Me "working" hard lol!!! xD</em></p>
+<img id="potd-img" src="" alt="Poms" style="width: 100%; max-width: 400px; border: 2px solid #000; display: block; margin: 0 auto;">
+<p><em id="potd-caption"></em></p>
+<div style="font-size: 10px; color: #888;" id="potd-date"></div>
 </div>
+
+<script>
+(function() {
+    var images = [
+        {src: 'poms_sleeping.jpg',    caption: "Me 'working' hard lol!!! xD"},
+        {src: 'poms_loaf.jpg',        caption: 'Perfect Orange Loaf mode activated'},
+        {src: 'poms_yawn.jpg',        caption: 'RAAAWR!! (Big yawn)'},
+        {src: 'poms_stare.jpg',       caption: 'Staring into your soul... do you feel it?'},
+        {src: 'poms_box.jpg',         caption: 'If I fits, I sits. This is science.'},
+        {src: 'poms_judging.jpg',     caption: 'Judging your life choices (and finding them lacking)'},
+        {src: 'poms_profile.jpg',     caption: 'Distinguished Gentleman Profile Shot'},
+        {src: 'poms_curious.jpg',     caption: 'Investigating suspicious activity in the vicinity'},
+        {src: 'poms_looking_up.jpg',  caption: 'Looking up the ceiling bug situation'},
+        {src: 'poms_avatar.jpg',      caption: 'My official portrait. Hang it in the Louvre.'},
+        {src: 'poms_drink.jpg',       caption: 'Official POMS Apple Soda Brand Ambassador photo!!!'}
+    ];
+    var baseURL = 'https://cloudsky01.github.io/monsieur-poms.com/images/';
+    var now = new Date();
+    var start = new Date(now.getFullYear(), 0, 0);
+    var dayOfYear = Math.floor((now - start) / 86400000);
+    var pic = images[dayOfYear % images.length];
+    document.getElementById('potd-img').src = baseURL + pic.src;
+    document.getElementById('potd-caption').textContent = pic.caption;
+    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    document.getElementById('potd-date').textContent =
+        'Photo of the Day for ' + months[now.getMonth()] + ' ' + now.getDate() + ', ' + now.getFullYear();
+})();
+</script>
 
 <p>Don't forget to add me to your top 8!!!</p>
 <p>xoxo,<br>Monsieur Poms 🐾</p>
