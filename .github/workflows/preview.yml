@@ -1,0 +1,42 @@
+name: Deploy PR Preview
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - closed
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: preview-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy-preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Hugo
+        if: github.event.action != 'closed'
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: 'latest'
+
+      - name: Build
+        if: github.event.action != 'closed'
+        run: hugo --minify --baseURL "https://cloudsky01.github.io/monsieur-poms.com/pr-preview/pr-${{ github.event.number }}/"
+
+      - name: Deploy preview
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          source-dir: ./public
+          preview-branch: gh-pages
+          umbrella-dir: pr-preview
+          action: auto
