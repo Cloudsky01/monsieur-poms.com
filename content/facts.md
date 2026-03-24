@@ -56,7 +56,10 @@ var _pomsFacts = [
     "My nicknames include Bine, Binou, Monsieur Chonk, and 'The Tall One'. I accept all of them graciously.",
     "I am an officially recognized Apple Soda Brand Ambassador. The contract was negotiated entirely in treats.",
     "My signature move is the Perfect Loaf Position. Art critics are speechless. Scientists are baffled.",
-    "I have filed numerous formal complaints (meows) regarding suspicious ceiling activity. The investigation is ongoing."
+    "I have filed numerous formal complaints (meows) regarding suspicious ceiling activity. The investigation is ongoing.",
+    "Every box in this house is my box. This is the law. I did not make the law, I merely enforce it.",
+    "I could be asleep right now, but I choose to judge you instead. This is called work ethic.",
+    "My disapproving expression has caused my human to apologise to me on multiple occasions. As it should."
 ];
 function showRandomPomsFact() {
     var available = [];

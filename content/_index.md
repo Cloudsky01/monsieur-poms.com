@@ -55,6 +55,111 @@ title: "Home"
 <p>xoxo,<br>Monsieur Poms 🐾</p>
 </div>
 
+<!-- DAILY STATUS BOARD -->
+<div style="border: 3px ridge #FF00FF; padding: 12px; background: #000080; color: white; margin-bottom: 20px; font-family: 'Courier New', monospace;">
+<h2 style="margin-top: 0; color: #FFFF00; text-align: center; text-shadow: 2px 2px #FF0000; letter-spacing: 2px;">★ POMS' DAILY STATUS BOARD ★</h2>
+<div style="font-size: 9px; color: #AAAAAA; text-align: center; margin-bottom: 8px;">[ auto-updated every day — come back tomorrow!! ]</div>
+<hr style="border-color: #FFFF00; margin-bottom: 10px;">
+<table width="100%" cellpadding="4" style="font-size: 12px; border-collapse: collapse;">
+<tr>
+<td width="32%" style="color: #00FFFF; font-weight: bold; vertical-align: top;">STATUS:</td>
+<td id="poms-status" style="color: #FFFFFF;">...</td>
+</tr>
+<tr>
+<td style="color: #00FFFF; font-weight: bold; vertical-align: top;">MOOD:</td>
+<td id="poms-mood" style="color: #FFFFFF;">...</td>
+</tr>
+<tr>
+<td style="color: #00FFFF; font-weight: bold; vertical-align: top;">CURRENTLY:</td>
+<td id="poms-activity" style="color: #FFFFFF;">...</td>
+</tr>
+<tr>
+<td style="color: #00FFFF; font-weight: bold; vertical-align: top;">TODAY'S THOUGHT:</td>
+<td id="poms-thought" style="color: #FFFF99; font-style: italic;">...</td>
+</tr>
+</table>
+<div style="text-align: right; margin-top: 8px; font-size: 9px; color: #666666;" id="poms-date"></div>
+</div>
+
+<script>
+(function() {
+  var statuses = [
+    "ONLINE (reluctantly)",
+    "Away: napping",
+    "Busy: judging",
+    "In a meeting (food bowl press conference)",
+    "Do Not Disturb: loafing",
+    "Available for treats ONLY",
+    "Offline: refusing vegetables",
+    "Busy: strategic treat operations",
+    "Away: storing height horizontally",
+    "Currently: in the box",
+    "Online: surveillance mode",
+    "Busy: being professionally cute"
+  ];
+  var moods = [
+    "Chatty 🗣️",
+    "Judgmental 🐱",
+    "Regal 👑",
+    "Thoroughly Indifferent 😒",
+    "Hungry (always) 🍗",
+    "Smugly Satisfied 😏",
+    "Deeply Suspicious 🤨",
+    "Disappointed in Everyone 😠",
+    "Contemplative 🤔",
+    "Aggressively Cute 💕",
+    "Philosophical ✨",
+    "Strategically Motivated 🎯"
+  ];
+  var activities = [
+    "Occupying the warmest spot on the couch",
+    "Conducting a thorough investigation of the food bowl",
+    "Staring at the wall (it did something)",
+    "Performing quality control on the bed",
+    "Holding a solo press conference about dinner",
+    "Sitting in a box that appeared from nowhere",
+    "Loafing in the sun like the majestic being I am",
+    "Critiquing my human's work-from-home outfit",
+    "Knocking something off the counter (for science)",
+    "Demanding chicken via sustained vocalization",
+    "Sleeping. This is content creation.",
+    "Judging everyone from the window"
+  ];
+  var thoughts = [
+    "If you give me chicken, I will allow you to pet me.",
+    "The green bean incident was a personal attack. I have not forgotten.",
+    "I am not fat. I am a cloud. Clouds are not fat.",
+    "Every box in this house is my box. This is not negotiable.",
+    "Woke up. Chose chaos. Knocked over a cup. Great morning.",
+    "The humans keep calling me Binou. I have decided to allow it.",
+    "I could be an apple soda brand ambassador. The brand should contact me.",
+    "Meowing at 3am is called NETWORKING. You are welcome.",
+    "I am simultaneously the smallest and most important thing in this house.",
+    "They almost gave me a vegetable today. Almost.",
+    "The spinning bottle on this website was my concept. I have excellent ideas.",
+    "Today I shall sit like a perfect loaf and think about absolutely nothing."
+  ];
+
+  function hashDate(s) {
+    var h = 0;
+    for (var i = 0; i < s.length; i++) {
+      h = Math.imul(31, h) + s.charCodeAt(i) | 0;
+    }
+    return Math.abs(h);
+  }
+
+  var d = new Date();
+  var key = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
+  var seed = hashDate(key);
+
+  document.getElementById('poms-status').textContent   = statuses  [(seed)       % statuses.length];
+  document.getElementById('poms-mood').textContent     = moods     [(seed + 7)   % moods.length];
+  document.getElementById('poms-activity').textContent = activities[(seed + 13)  % activities.length];
+  document.getElementById('poms-thought').textContent  = '\u201C' + thoughts[(seed + 3) % thoughts.length] + '\u201D';
+  document.getElementById('poms-date').textContent     = 'last updated: ' + d.toDateString();
+})();
+</script>
+
 <!-- POST 2 -->
 <div style="border: 1px solid #CCC; padding: 10px; background: #F9F9F9; margin-bottom: 20px;">
 <h2 style="margin-top: 0;">😡 WHY ARE VEGETABLES?? 😡</h2>
