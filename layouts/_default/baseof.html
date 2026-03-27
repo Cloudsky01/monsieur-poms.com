@@ -265,6 +265,15 @@
             </div>
 
             <div class="sidebar-box">
+                <div class="sidebar-title">&#x1F4E1; Poms Status</div>
+                <div style="font-size: 10px; text-align: center;">
+                    <div style="font-weight: bold; margin-bottom: 5px;">RIGHT NOW, Poms is:</div>
+                    <div id="poms-live-status" style="background: #FFFF00; border: 2px dashed #FF0000; padding: 5px; font-size: 11px; line-height: 1.5; min-height: 44px;"></div>
+                    <div style="margin-top: 5px; font-size: 9px; color: #555;">&#128337; updates every hour!</div>
+                </div>
+            </div>
+
+            <div class="sidebar-box">
                 <div class="sidebar-title">Shoutbox</div>
                 <marquee direction="up" height="100" scrollamount="2" style="text-align: left; font-size: 10px;">
                     <strong>user1:</strong> cool site!<br><br>
@@ -304,5 +313,36 @@
     </div>
 </div>
 
+<script>
+(function () {
+    var statuses = [
+        [0,  6,  '&#x1F634;', 'Sleeping directly on top of something important'],
+        [6,  7,  '&#x1F63E;', 'Waking humans up via yelling at maximum volume'],
+        [7,  9,  '&#x1F37D;', 'Holding press conference on breakfast quality'],
+        [9,  11, '&#x1FA9F;', 'Bird TV (window seat, premium subscription)'],
+        [11, 13, '&#x1F4A4;', 'Strategic Nap #1 (collecting energy for later)'],
+        [13, 14, '&#x1F644;', 'Knocking things off shelves. It&#39;s called ART.'],
+        [14, 16, '&#x1F575;&#xFE0F;', 'Investigating a suspicious plastic bag'],
+        [16, 17, '&#x1F357;', 'Lobbying for early dinner. It&#39;s been HOURS.'],
+        [17, 19, '&#x1F440;', 'Supervising the kitchen. They cannot be trusted.'],
+        [19, 20, '&#x1F63E;', 'Demanding a second dinner. First was inadequate.'],
+        [20, 21, '&#x1F4FA;', 'Critiquing the humans&#39; choice of TV show'],
+        [21, 22, '&#x1F4A4;', 'Strategic Nap #7 (post-criticism recovery)'],
+        [22, 24, '&#x26A1;', 'NIGHT ZOOMIES. Maximum velocity achieved.']
+    ];
+    function updateStatus() {
+        var h = new Date().getHours();
+        for (var i = 0; i < statuses.length; i++) {
+            if (h >= statuses[i][0] && h < statuses[i][1]) {
+                var el = document.getElementById('poms-live-status');
+                if (el) el.innerHTML = statuses[i][2] + '<br>' + statuses[i][3];
+                break;
+            }
+        }
+    }
+    updateStatus();
+    setInterval(updateStatus, 60000);
+})();
+</script>
 </body>
 </html>
