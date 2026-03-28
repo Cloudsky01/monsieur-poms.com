@@ -17,39 +17,58 @@ title: "Home"
 </ul>
 
 <div style="text-align: center; border: 3px dashed #FF00FF; padding: 10px; background: #FFF0F5; margin: 10px;">
-<h3>PICTURE OF THE DAY</h3>
-<img id="potd-img" src="" alt="Poms" style="width: 100%; max-width: 400px; border: 2px solid #000; display: block; margin: 0 auto;">
-<p><em id="potd-caption"></em></p>
-<div style="font-size: 10px; color: #888;" id="potd-date"></div>
+<h3>~*~ WHAT IS POMS DOING RIGHT NOW?? ~*~</h3>
+<div id="poms-activity-widget">
+<div id="poms-time-display" style="font-family: 'Courier New', monospace; background: #000; color: #00FF00; padding: 4px 10px; display: inline-block; font-size: 13px; border: 2px inset #555; margin-bottom: 8px;"></div>
+<br>
+<img id="poms-activity-img" src="" alt="Poms activity" style="width: 100%; max-width: 350px; border: 3px solid #000080; margin: 8px 0;">
+<div id="poms-activity-label" style="font-size: 18px; font-weight: bold; color: #FF00FF; margin: 4px 0;"></div>
+<div id="poms-activity-caption" style="font-style: italic; font-size: 13px; margin: 4px 0;"></div>
+<div id="poms-mood-display" style="font-size: 11px; margin-top: 6px;"></div>
 </div>
-
 <script>
 (function() {
-    var images = [
-        {src: 'poms_sleeping.jpg',    caption: "Me 'working' hard lol!!! xD"},
-        {src: 'poms_loaf.jpg',        caption: 'Perfect Orange Loaf mode activated'},
-        {src: 'poms_yawn.jpg',        caption: 'RAAAWR!! (Big yawn)'},
-        {src: 'poms_stare.jpg',       caption: 'Staring into your soul... do you feel it?'},
-        {src: 'poms_box.jpg',         caption: 'If I fits, I sits. This is science.'},
-        {src: 'poms_judging.jpg',     caption: 'Judging your life choices (and finding them lacking)'},
-        {src: 'poms_profile.jpg',     caption: 'Distinguished Gentleman Profile Shot'},
-        {src: 'poms_curious.jpg',     caption: 'Investigating suspicious activity in the vicinity'},
-        {src: 'poms_looking_up.jpg',  caption: 'Looking up the ceiling bug situation'},
-        {src: 'poms_avatar.jpg',      caption: 'My official portrait. Hang it in the Louvre.'},
-        {src: 'poms_drink.jpg',       caption: 'Official POMS Apple Soda Brand Ambassador photo!!!'}
+    var BASE = "https://cloudsky01.github.io/monsieur-poms.com/images/";
+    var schedule = [
+        { hours: [0,1,2,3], img: "poms_sleeping.jpg",     label: "SLEEP MODE ACTIVATED",            caption: "Do not disturb. Charging for tomorrow's complaints.",     mood: "Mood: Deeply unconscious" },
+        { hours: [4,5],      img: "poms_looking_up.jpg",  label: "INITIATING WAKE-UP PROTOCOL",      caption: "Sitting on human's face in 3... 2... 1...",                mood: "Mood: Strategically annoying" },
+        { hours: [6,7],      img: "poms_stare.jpg",       label: "MORNING PRESS CONFERENCE",         caption: "The food bowl situation is UNACCEPTABLE and heads will roll.", mood: "Mood: Outraged" },
+        { hours: [8,9],      img: "poms_yawn.jpg",        label: "POST-BREAKFAST STRETCH",           caption: "Breakfast was consumed. It was adequate. Barely.",          mood: "Mood: Mildly satisfied" },
+        { hours: [10,11],    img: "poms_loaf.jpg",        label: "LOAF CONFIGURATION ENGAGED",       caption: "Peak efficiency. All paws tucked. Monitoring the perimeter.", mood: "Mood: Zen loaf energy" },
+        { hours: [12,13],    img: "poms_sleeping.jpg",    label: "NAP #1 (THE IMPORTANT ONE)",       caption: "Working hard on absolutely nothing. Please hold.",          mood: "Mood: Professionally asleep" },
+        { hours: [14,15],    img: "poms_judging.jpg",     label: "AFTERNOON JUDGING SESSION",        caption: "You have been evaluated and found somewhat acceptable.",    mood: "Mood: Quietly disappointed" },
+        { hours: [16,17],    img: "poms_curious.jpg",     label: "PERIMETER INSPECTION UNDERWAY",   caption: "Something moved behind the fridge. INVESTIGATING.",         mood: "Mood: Highly suspicious" },
+        { hours: [18,19],    img: "poms_stare.jpg",       label: "PRE-DINNER DEMAND SEQUENCE",       caption: "The bowl is NOT going to fill itself. HELLO. HELLO??",      mood: "Mood: Escalating urgency" },
+        { hours: [20,21],    img: "poms_sleeping.jpg",    label: "POST-DINNER RECOVERY COMA",        caption: "Food consumed. Retreating to couch. Do not make eye contact.", mood: "Mood: Food coma achieved" },
+        { hours: [22],       img: "poms_profile.jpg",     label: "EVENING BRAND AMBASSADOR DUTIES", caption: "Posing for unsolicited photos. You're welcome, internet.",    mood: "Mood: Photogenic and aware of it" },
+        { hours: [23],       img: "poms_sleeping.jpg",    label: "SIMULATING SLEEP (PLOTTING)",      caption: "Definitely not planning anything. Definitely just sleeping. xD", mood: "Mood: Suspiciously still" }
     ];
-    var baseURL = 'https://cloudsky01.github.io/monsieur-poms.com/images/';
-    var now = new Date();
-    var start = new Date(now.getFullYear(), 0, 0);
-    var dayOfYear = Math.floor((now - start) / 86400000);
-    var pic = images[dayOfYear % images.length];
-    document.getElementById('potd-img').src = baseURL + pic.src;
-    document.getElementById('potd-caption').textContent = pic.caption;
-    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    document.getElementById('potd-date').textContent =
-        'Photo of the Day for ' + months[now.getMonth()] + ' ' + now.getDate() + ', ' + now.getFullYear();
+
+    function pad(n) { return n < 10 ? "0" + n : n; }
+
+    function update() {
+        var now = new Date();
+        var h = now.getHours();
+        var entry;
+        for (var i = 0; i < schedule.length; i++) {
+            if (schedule[i].hours.indexOf(h) !== -1) { entry = schedule[i]; break; }
+        }
+        if (!entry) entry = schedule[0];
+
+        var timeStr = pad(h) + ":" + pad(now.getMinutes()) + ":" + pad(now.getSeconds());
+        document.getElementById("poms-time-display").textContent = "[ LOCAL TIME: " + timeStr + " ]";
+        document.getElementById("poms-activity-img").src = BASE + entry.img;
+        document.getElementById("poms-activity-img").alt = entry.label;
+        document.getElementById("poms-activity-label").textContent = entry.label;
+        document.getElementById("poms-activity-caption").textContent = '"' + entry.caption + '"';
+        document.getElementById("poms-mood-display").innerHTML = "<strong>" + entry.mood + "</strong> &nbsp;|&nbsp; Check back later for updates!!";
+    }
+
+    update();
+    setInterval(update, 1000);
 })();
 </script>
+</div>
 
 <p>Don't forget to add me to your top 8!!!</p>
 <p>xoxo,<br>Monsieur Poms 🐾</p>
