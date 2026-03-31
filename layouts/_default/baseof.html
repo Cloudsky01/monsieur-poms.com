@@ -213,6 +213,87 @@
             100% { transform: rotate(360deg); }
         }
 
+        .aim-window {
+            border: 2px solid #000080;
+            background: #E8E8FF;
+            font-size: 10px;
+        }
+
+        .aim-titlebar {
+            background: linear-gradient(to right, #0000AA, #5555FF);
+            color: #FFF;
+            font-weight: bold;
+            font-size: 11px;
+            padding: 3px 5px;
+            font-family: 'Trebuchet MS', sans-serif;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .aim-titlebar-btn {
+            background: #CCC;
+            color: #000;
+            border: 1px solid #888;
+            font-size: 9px;
+            padding: 0 3px;
+            cursor: default;
+            font-family: 'Courier New', monospace;
+        }
+
+        .aim-body {
+            padding: 5px;
+            text-align: left;
+        }
+
+        .aim-buddy-row {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 6px;
+            background: #FFF;
+            border: 1px inset #CCC;
+            padding: 3px;
+        }
+
+        .aim-buddy-avatar {
+            width: 36px;
+            height: 36px;
+            object-fit: cover;
+            border: 1px solid #999;
+        }
+
+        .aim-screen-name {
+            color: #0000AA;
+            font-weight: bold;
+            font-size: 11px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .aim-status-online {
+            color: #008000;
+            font-weight: bold;
+        }
+
+        .aim-away-box {
+            background: #FFFFC0;
+            border: 1px solid #AAAA00;
+            padding: 4px;
+            font-style: italic;
+            font-size: 10px;
+            color: #333;
+            line-height: 1.4;
+            min-height: 40px;
+        }
+
+        .aim-day-label {
+            color: #666;
+            font-size: 9px;
+            margin-top: 3px;
+            font-family: 'Courier New', monospace;
+            text-align: right;
+        }
+
     </style>
 </head>
 <body>
@@ -283,6 +364,25 @@
                 </marquee>
             </div>
 
+            <div class="aim-window sidebar-box" style="padding: 0; border-color: #0000AA;">
+                <div class="aim-titlebar">
+                    <span>💬 AIM Buddy Info</span>
+                    <span class="aim-titlebar-btn">x</span>
+                </div>
+                <div class="aim-body">
+                    <div class="aim-buddy-row">
+                        <img src="{{ .Site.BaseURL }}images/poms_avatar.jpg" class="aim-buddy-avatar" alt="Poms buddy icon">
+                        <div>
+                            <div class="aim-screen-name">MonsieurPoms</div>
+                            <div class="aim-status-online">● Online</div>
+                        </div>
+                    </div>
+                    <div style="font-size: 9px; color: #555; margin-bottom: 3px; font-family: 'Courier New', monospace;">Away Message:</div>
+                    <div class="aim-away-box" id="aim-away-msg">...</div>
+                    <div class="aim-day-label" id="aim-day-label"></div>
+                </div>
+            </div>
+
             <div class="music-player">
                 🎵 Now Playing: <br>
                 <em>Monsieur Poms - Banger</em><br>
@@ -342,6 +442,20 @@
     }
     updateStatus();
     setInterval(updateStatus, 60000);
+
+    var messages = [
+        "Sunday nap day. Do not disturb. I am busy dreaming about chicken. Unless you HAVE chicken. Then disturb me immediately.",
+        "UGH. It is Monday. I am not taking questions at this time. I am in full loaf formation until further notice. Good day.",
+        "Tuesday. Currently contemplating why the food bowl is not fuller. This is an emergency. I have filed a formal complaint with the human.",
+        "Hump Day. I am simply SITTING here. JUDGING. It is a full-time occupation. Please leave a message after the meow. *MROW*",
+        "Almost Friday!!! I have already knocked something off the counter in pre-celebration. You are welcome. It was a mug.",
+        "FRIDAY!!! The human comes home early!!! I have been sitting by the door since noon. No reason. Just extremely normal cat behavior.",
+        "Human is home ALL DAY. I have meowed at them 47 times. They are beginning to understand. More pets. Fewer vegetables. Simple."
+    ];
+    var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    var day = new Date().getDay();
+    document.getElementById("aim-away-msg").textContent = messages[day];
+    document.getElementById("aim-day-label").textContent = "~ " + dayNames[day] + " mood ~";
 })();
 </script>
 </body>
