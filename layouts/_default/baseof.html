@@ -274,6 +274,20 @@
                 </marquee>
             </div>
 
+            <div class="sidebar-box" id="press-conference-box">
+                <div class="sidebar-title">📰 Daily Press Conference</div>
+                <div style="font-size: 9px; color: #666; margin-bottom: 4px;">
+                    <span class="blink" style="color: red; font-weight: bold;">● LIVE</span>
+                    &nbsp;from the food bowl
+                </div>
+                <div id="press-conference-text" style="font-size: 11px; font-style: italic; color: #000080; line-height: 1.5; min-height: 60px;">
+                    Loading statement...
+                </div>
+                <div style="font-size: 9px; color: #888; margin-top: 6px; text-align: right;">
+                    — M. Poms, <span id="press-conference-date"></span>
+                </div>
+            </div>
+
             <div class="music-player">
                 🎵 Now Playing: <br>
                 <em>Monsieur Poms - Banger</em><br>
@@ -283,6 +297,86 @@
                     Your browser does not support the audio element.
                 </audio>
             </div>
+
+            <script>
+            (function() {
+                var statements = [
+                    "The bowl is half-empty. This is an OUTRAGE and I will be filing a formal complaint by meowing at 3 AM.",
+                    "Chicken. That is all. That is the statement. Chicken.",
+                    "I have examined the green bean situation. My verdict: no. Never. Not now, not ever.",
+                    "Today I discovered a sunbeam in a new location. I have claimed it. It is mine now.",
+                    "My humans think I am chubby. I am not chubby. I am tall. The height is simply stored horizontally.",
+                    "I solved my food puzzle in record time this morning. As expected. I am, after all, a genius.",
+                    "I gave my human the disappointed eyes for 45 minutes. The treat was eventually produced. Tactics: successful.",
+                    "The nap schedule has been disrupted by the vacuum cleaner. A formal inquiry is underway.",
+                    "I have been monitoring the bird situation outside the window. I will not elaborate further at this time.",
+                    "Sources confirm: it is time for dinner. It has been time for dinner for the past three hours.",
+                    "I knocked something off the counter today. It was a social experiment. The results were interesting.",
+                    "My coat is immaculate. I have been grooming since 6 AM. Professionalism is important.",
+                    "I have reviewed my human's work-from-home setup and found it acceptable. I will be sitting on the keyboard.",
+                    "The cardboard box delivered today has been repurposed as my official headquarters. Do not touch it.",
+                    "I would like to formally announce that the chin scratch at 2 PM was satisfactory. More will be required.",
+                    "Food puzzle: completed. Treat: consumed. Status: still hungry. This is a scandal.",
+                    "I have spent 4 hours in the same position today. This is not laziness. This is strategic stillness.",
+                    "I would like it on the record that Nyan Cat is an excellent song. My musical opinions are not up for debate.",
+                    "My name is Monsieur Poms. I was named after a soda. This is the most dignified thing I have ever heard.",
+                    "The lap was available. I did not take it. I wanted them to know it was on MY terms.",
+                    "Breaking: I have detected a suspicious smell in the kitchen. Investigation is ongoing. Updates at 11.",
+                    "I headbutted my human's face at 4:47 AM. Not because I missed them. The bowl was empty. Coincidence.",
+                    "Today's agenda: eat, sit in the sunbeam, eat again, stare at the wall for 20 minutes, eat.",
+                    "I have bitten the hand that feeds me. In my defense, it was moving too slowly toward the treat bag.",
+                    "My fans know me as Bine. My associates know me as Binou. The food bowl knows me as its master.",
+                    "The vet suggested a 'diet'. I have issued a counter-proposal: more chicken.",
+                    "I spoke at length this morning about the inadequacy of breakfast. Nobody understood me. I am ahead of my time.",
+                    "I caught a bug today. I released it. I am merciful. Also it tasted weird.",
+                    "To those who say I am 'demanding': yes. And? Your point?",
+                    "The pillow has been warmed to optimal temperature. I have claimed it. Please sleep on the floor.",
+                    "I have invented a new meow specifically for when the food is taking too long. Patent pending.",
+                    "Today I stared at the wall for 12 minutes. I cannot tell you what I saw. But it was significant.",
+                    "My human says I talk too much. I say they listen too little. We agree to disagree.",
+                    "I have pressed my face against my human's face for warmth. It was not sentimental. I was cold.",
+                    "The treat bag rustled in the kitchen. I arrived in 0.3 seconds. My reflexes are unmatched.",
+                    "I have reviewed my schedule for tomorrow: sleep, eat, judge, sleep, eat. Looks manageable.",
+                    "Someone said I snore. This is misinformation. I breathe loudly with intention.",
+                    "I have made eye contact with the dog next door through the window. We have reached a diplomatic standoff.",
+                    "I would like to acknowledge that I am, objectively, the most interesting person in this household.",
+                    "The blanket has been kneaded to my exact specifications. I may or may not actually sleep on it.",
+                    "I batted my toy under the couch and now cannot reach it. I am handling this with complete dignity.",
+                    "My humans left for several hours. I was fine. I meowed at the door for two hours straight. But I was fine.",
+                    "The water bowl and the fancy fountain produce the same water. I only drink from the tap. Standards matter.",
+                    "I have been called 'Monsieur Chonk' again. My lawyer has been notified.",
+                    "Today I sat in the bathroom and watched my human brush their teeth. I was providing moral support.",
+                    "I have located a new sleeping position that is 40% more uncomfortable for my human. Adopting immediately.",
+                    "The chicken was late by three minutes tonight. A full incident report has been drafted.",
+                    "I sat on my human's book to help them read faster. They did not seem grateful. Baffling.",
+                    "I am not hiding under the bed. I am holding a private strategy meeting. Please respect my office.",
+                    "My press conference this morning ran long because the food topic requires thorough coverage. As always.",
+                    "I have confirmed that the sunbeam moves throughout the day. I move with it. This is called dedication.",
+                    "Breaking news: the treat is good. Follow-up report: still good. In-depth analysis: yes, more please.",
+                    "I have chosen to sit next to my human tonight. Not on them. Next to them. Proximity, not commitment.",
+                    "The new toy has been evaluated. It is acceptable. I have already lost it under the refrigerator.",
+                    "I yawned so wide today that my human laughed. I do not know what was funny. I was just tired.",
+                    "Today's mood: chatty. Tomorrow's projected mood: also chatty. Long-term forecast: chatty with a chance of loud.",
+                    "I overheard the word 'vet'. I am now unavailable for comment or physical location.",
+                    "My official position on Mondays: they should not exist. I issue this statement every week.",
+                    "I have put my paw on my human's face gently to wake them up. It was 5 AM. They were grateful, I assume.",
+                    "I ran at full speed from one end of the apartment to the other at midnight. No further comment at this time."
+                ];
+
+                var now = new Date();
+                var start = new Date(now.getFullYear(), 0, 0);
+                var diff = now - start;
+                var oneDay = 1000 * 60 * 60 * 24;
+                var dayOfYear = Math.floor(diff / oneDay);
+                var idx = dayOfYear % statements.length;
+
+                var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+                var dateStr = months[now.getMonth()] + " " + now.getDate() + ", " + now.getFullYear();
+
+                document.getElementById("press-conference-text").innerHTML = "&ldquo;" + statements[idx] + "&rdquo;";
+                document.getElementById("press-conference-date").textContent = dateStr;
+            })();
+            </script>
         </div>
 
         <div class="main-content">
