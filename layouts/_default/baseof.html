@@ -288,6 +288,26 @@
                 </div>
             </div>
 
+            <div class="sidebar-box" id="buddy-status-box">
+                <div class="sidebar-title">💬 Buddy Status</div>
+                <div style="background: linear-gradient(to bottom, #f7e05e 0%, #e8b800 100%); border: 1px solid #c8a000; padding: 3px 5px; margin-bottom: 6px; font-size: 9px; font-family: 'Courier New', monospace; color: #333; font-weight: bold;">
+                    AIM 5.9 &nbsp;|&nbsp; <span style="color:#006600;">● Connected</span>
+                </div>
+                <div style="display: flex; align-items: flex-start; gap: 5px; margin-bottom: 6px;">
+                    <img src="{{ .Site.BaseURL }}images/poms_avatar.jpg" style="width: 34px; height: 34px; border: 2px inset #ccc; object-fit: cover; flex-shrink: 0;">
+                    <div style="min-width: 0;">
+                        <div style="font-weight: bold; font-size: 10px; color: #000080; white-space: nowrap;">monsieur_poms</div>
+                        <div id="aim-status-label" style="font-size: 9px; font-weight: bold; margin-top: 1px;"></div>
+                        <div id="aim-activity" style="font-size: 9px; color: #333; margin-top: 2px;"></div>
+                    </div>
+                </div>
+                <div style="border: 1px solid #aaa; border-top: 2px solid #888; background: #fff9e8; padding: 5px; font-size: 10px; min-height: 55px;">
+                    <div style="font-size: 9px; color: #888; font-style: normal; margin-bottom: 3px; border-bottom: 1px dotted #ccc; padding-bottom: 2px;">&#9993; Away Message:</div>
+                    <div id="aim-away-msg" style="font-style: italic; color: #000; line-height: 1.4;"></div>
+                </div>
+                <div style="font-size: 9px; color: #999; margin-top: 4px; text-align: right;" id="aim-since"></div>
+            </div>
+
             <div class="music-player">
                 🎵 Now Playing: <br>
                 <em>Monsieur Poms - Banger</em><br>
@@ -375,6 +395,100 @@
 
                 document.getElementById("press-conference-text").innerHTML = "&ldquo;" + statements[idx] + "&rdquo;";
                 document.getElementById("press-conference-date").textContent = dateStr;
+            })();
+            </script>
+
+            <script>
+            (function() {
+                var hour = new Date().getHours();
+
+                var statuses = [
+                    {
+                        from: 0, to: 4,
+                        type: "away", label: "Away", color: "#CC6600",
+                        activity: "💤 nap #5 of the night",
+                        msg: "do not disturb. unless you have treats. actually, no. still do not disturb.",
+                        since: "since ~midnight"
+                    },
+                    {
+                        from: 4, to: 6,
+                        type: "active", label: "Active", color: "#006600",
+                        activity: "👻 haunting the hallway",
+                        msg: "something has occurred. i cannot tell you what. i am running now.",
+                        since: "since 4 AM"
+                    },
+                    {
+                        from: 6, to: 9,
+                        type: "active", label: "Active", color: "#006600",
+                        activity: "😤 demanding breakfast",
+                        msg: "THE BOWL IS EMPTY. i have been starving since yesterday. this is a formal complaint.",
+                        since: "since 6 AM"
+                    },
+                    {
+                        from: 9, to: 12,
+                        type: "active", label: "Active", color: "#006600",
+                        activity: "☀️ morning sunbeam shift",
+                        msg: "the sun has chosen me. i am warm. i have claimed this beam. do not move me.",
+                        since: "since 9 AM"
+                    },
+                    {
+                        from: 12, to: 14,
+                        type: "idle", label: "Idle", color: "#886600",
+                        activity: "💤 pre-lunch nap",
+                        msg: "napping to build up appetite for lunch. this is essential work. do not wake me.",
+                        since: "since noon"
+                    },
+                    {
+                        from: 14, to: 16,
+                        type: "active", label: "Active", color: "#006600",
+                        activity: "🔭 window surveillance",
+                        msg: "there is a bird. i am monitoring the situation. updates when available.",
+                        since: "since 2 PM"
+                    },
+                    {
+                        from: 16, to: 18,
+                        type: "active", label: "Active", color: "#006600",
+                        activity: "😾 demanding early dinner",
+                        msg: "dinner is late. by 'late' i mean it has not happened yet. this is unacceptable.",
+                        since: "since 4 PM"
+                    },
+                    {
+                        from: 18, to: 20,
+                        type: "active", label: "Active", color: "#006600",
+                        activity: "🍗 supervising dinner prep",
+                        msg: "i am helping in the kitchen. my presence is essential and not a tripping hazard.",
+                        since: "since 6 PM"
+                    },
+                    {
+                        from: 20, to: 22,
+                        type: "idle", label: "Idle", color: "#886600",
+                        activity: "🍞 evening loaf mode",
+                        msg: "i have become bread. all limbs tucked. do not ask questions. this is the loaf.",
+                        since: "since 8 PM"
+                    },
+                    {
+                        from: 22, to: 24,
+                        type: "active", label: "Active", color: "#006600",
+                        activity: "🏃 ZOOMIES (URGENT)",
+                        msg: "SOMETHING HAS HAPPENED. i cannot explain. i must run. RIGHT NOW. DO NOT FOLLOW ME.",
+                        since: "since 10 PM"
+                    }
+                ];
+
+                var s = statuses[0];
+                for (var i = 0; i < statuses.length; i++) {
+                    if (hour >= statuses[i].from && hour < statuses[i].to) {
+                        s = statuses[i];
+                        break;
+                    }
+                }
+
+                var dot = s.type === "active" ? "●" : (s.type === "idle" ? "◐" : "○");
+                document.getElementById("aim-status-label").innerHTML =
+                    '<span style="color:' + s.color + ';">' + dot + ' ' + s.label + '</span>';
+                document.getElementById("aim-activity").textContent = s.activity;
+                document.getElementById("aim-away-msg").innerHTML = "&ldquo;" + s.msg + "&rdquo;";
+                document.getElementById("aim-since").textContent = "— updated " + s.since;
             })();
             </script>
         </div>
